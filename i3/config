@@ -188,11 +188,8 @@ bindsym $mod+r mode "resize"
 
 # keyboard layout swith using alt+shift
 exec_always "setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle"
-exec setxkbmap -layout us,fr
-exec setxkbmap -option 'grp:alt_shift_toggle'
-
-# Launch Polybar
-exec bash ~/.config/polybar/launch.sh --grayblocks
+exec_always setxkbmap -layout us,fr
+exec_always setxkbmap -option 'grp:alt_shift_toggle'
 
 # Launch Compton (transparent applications)
 exec compton --config ~/.config/compton.conf
@@ -201,11 +198,7 @@ exec compton --config ~/.config/compton.conf
 exec --no-startup-id /usr/libexec/gsd-xsettings
 
 # Set wallpaper
-exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper01.jpg --head=0
-exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper01.jpg --head=1
-
-# launch picom (transparent background)
-exec --no-startup-id picom -CGb
+exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper01.png --head=0 && nitrogen --set-scaled ~/Pictures/wallpaper01.png --head=1
 
 # increase key repeat
 exec --no-startup-id xset r rate 200 50
@@ -218,10 +211,13 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+assign [class="Firefox"] $ws1
+assign [class="Spotify"] $ws1
+
 # application start
-exec --no-startup-id firefox
-exec --no-startup-id spotify
-exec --no-startup-id terminal
+exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/spotify'
+exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/gnome-terminal'
 
 # gaps between windows
 for_window [class="^.*"] border pixel 0
