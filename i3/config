@@ -184,12 +184,7 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
-######################### PERSONNAL MAPPINGS ######################### 
-
-# keyboard layout swith using alt+shift
-exec_always "setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle"
-exec_always setxkbmap -layout us,fr
-exec_always setxkbmap -option 'grp:alt_shift_toggle'
+######################### PERSONNAL MAPPINGS #########################
 
 # Launch Compton (transparent applications)
 exec compton --config ~/.config/compton.conf
@@ -203,9 +198,6 @@ exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper01.png --head=0 &
 # increase key repeat
 exec --no-startup-id xset r rate 200 50
 
-# swap caps-lock and ctrl keys
-exec --no-startup-id setxkbmap -option ctrl:swapcaps
-
 # media players control
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -215,9 +207,17 @@ assign [class="Firefox"] $ws1
 assign [class="Spotify"] $ws1
 
 # application start
-exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/spotify'
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/spotify'
 exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/gnome-terminal'
+
+# keyboard layout swith using alt+shift
+exec_always "setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle"
+exec_always setxkbmap -layout us,fr
+exec_always setxkbmap -option 'grp:alt_shift_toggle'
+
+# swap caps-lock and ctrl keys
+exec -option ctrl:swapcaps
 
 # gaps between windows
 for_window [class="^.*"] border pixel 0
@@ -246,4 +246,5 @@ bar {
   }
 }
 
-bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
+bindsym $mod+d exec rofi -show run
+# bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
