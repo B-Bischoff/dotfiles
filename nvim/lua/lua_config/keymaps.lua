@@ -21,10 +21,10 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-t>", ":tabnew<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n", "<leader>e", ":Lex 15<CR>", opts)
+keymap("n", "<leader>e", ":NERDTreeToggle<CR>", opts)
 
 -- Esc remap
--- keymap("t", "<ESC>", "C-\\><C-n>", opts)
+keymap("t", "<ESC>", "<C-\\><C-n>", opts)
 keymap("i", "kj", "<ESC>", opts)
 keymap("v", "kj", "<ESC>", opts)
 keymap("t", "kj", "<ESC>", opts)

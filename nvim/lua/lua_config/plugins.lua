@@ -51,6 +51,7 @@ return packer.startup(function(use)
 	use "akinsho/toggleterm.nvim" -- Terminal in vim
 	use "octol/vim-cpp-enhanced-highlight" -- Cpp colored syntax
 	use "jiangmiao/auto-pairs"
+	use "ryanoasis/vim-devicons"
 
 	-- Themes
 	use 'ghifarit53/tokyonight-vim'
@@ -63,6 +64,7 @@ return packer.startup(function(use)
 	use "hrsh7th/cmp-cmdline" -- cmdline completions
 	use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	use "hrsh7th/cmp-nvim-lsp"
+	use "preservim/nerdtree"
 
 	-- debug with dap
 	use "mfussenegger/nvim-dap"

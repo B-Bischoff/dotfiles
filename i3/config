@@ -193,7 +193,7 @@ exec compton --config ~/.config/compton.conf
 exec --no-startup-id /usr/libexec/gsd-xsettings
 
 # Set wallpaper
-exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper01.png --head=0 && nitrogen --set-scaled ~/Pictures/wallpaper01.png --head=1
+exec --no-startup-id nitrogen --set-scaled ~/Pictures/wallpaper02.jpg --head=0 && nitrogen --set-scaled ~/Pictures/wallpaper02.jpg --head=1
 
 # increase key repeat
 exec --no-startup-id xset r rate 200 50
@@ -208,7 +208,7 @@ assign [class="Spotify"] $ws1
 
 # application start
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 1; exec /snap/bin/spotify'
+exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/spotify'
 exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/gnome-terminal'
 
 # keyboard layout swith using alt+shift
@@ -221,7 +221,6 @@ exec -option ctrl:swapcaps
 
 # gaps between windows
 for_window [class="^.*"] border pixel 0
-
 
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -246,5 +245,5 @@ bar {
   }
 }
 
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec ~/.config/rofi/launchers/type-4/launcher.sh
 # bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
