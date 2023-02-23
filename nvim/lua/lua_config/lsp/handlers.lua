@@ -1,6 +1,6 @@
 local ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not ok then
-		return
+	return
 end
 
 -- import lspconfig plugin safely
@@ -48,7 +48,7 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 lsp_installer.setup {
-	ensure_installed = {"clangd", "marksman", "cmake" },
+	ensure_installed = {"clangd", "marksman", "cmake", "glslls", "tsserver"},
 	automatic_installation = true,
 	ui = {
 		icons = {
@@ -75,4 +75,18 @@ lspconfig["marksman"].setup({
 lspconfig["cmake"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+-- configure Glsl server
+lspconfig["glslls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure TypeScript server
+lspconfig["tsserver"].setup({
+	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx"},
+	cmd = { "typescript-language-server", "--stdio" },
+	capabilities = capabilities,
 })

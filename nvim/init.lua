@@ -6,10 +6,11 @@ require "lua_config.lsp"
 require "lua_config.treesitter"
 require "lua_config.dap"
 
--- require ('nvim-dap-virtual-text').setup()
 require ('toggleterm').setup()
 require ('gitsigns').setup()
 require ('neoclip').setup()
 
 tokyonight_style = "night"
 vim.cmd "colorscheme tokyonight"
+
+vim.cmd "autocmd VimEnter,BufRead,BufNewFile /home/brice/Documents/transcendence/* setlocal ts=2 sw=2 expandtab"
