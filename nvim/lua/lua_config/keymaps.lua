@@ -37,8 +37,12 @@ keymap("v", ">", ">gv", opts)
 -- Unmap shift K (lua man search)
 keymap("", "S-k>", "<Nop>", opts)
 
+-- Add relative movements to jump list
+vim.cmd "nnoremap <expr> j v:count ? \"m'\" . v:count . 'j' : 'gj'"
+vim.cmd "nnoremap <expr> k v:count ? \"m'\" . v:count . 'k' : 'gk'"
+
 -- Toggle trailing chars
-keymap("", "<leader>sl", "set list!<CR>", opts)
+keymap("", "<leader>sl", ":set list!<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)

@@ -25,3 +25,5 @@ vim.opt.showmode=false
 vim.opt.ruler=false
 vim.opt.laststatus=0
 vim.opt.showcmd=false
+
+-- Colors for tmux
