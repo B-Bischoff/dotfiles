@@ -50,8 +50,9 @@ return packer.startup(function(use)
 	use "AckslD/nvim-neoclip.lua" -- Vim history
 	use "akinsho/toggleterm.nvim" -- Terminal in vim
 	use "octol/vim-cpp-enhanced-highlight" -- Cpp colored syntax
-	use "jiangmiao/auto-pairs"
 	use "ryanoasis/vim-devicons"
+	use "tpope/vim-fugitive"
+	use "karb94/neoscroll.nvim"
 
 	-- Themes
 	use 'ghifarit53/tokyonight-vim'

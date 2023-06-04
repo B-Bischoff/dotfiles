@@ -48,7 +48,7 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 lsp_installer.setup {
-	ensure_installed = {"clangd", "marksman", "cmake", "glslls", "tsserver"},
+	ensure_installed = {"clangd", "marksman", "cmake", "glslls", "tsserver", "tailwindcss"},
 	automatic_installation = true,
 	ui = {
 		icons = {
@@ -89,4 +89,16 @@ lspconfig["tsserver"].setup({
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx"},
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
+})
+
+-- configure tailwindcss server
+lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure css server
+lspconfig["cssls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
