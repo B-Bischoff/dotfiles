@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/brice/.config/nvim'
+let g:netrw_dirhist_3='/home/brice/.vim'
+let g:netrw_dirhist_2='/home/brice'
+let g:netrw_dirhist_1='/home/brice/.vim'
+let g:netrw_dirhist_0='/home/brice'
+let g:netrw_dirhist_9='/home/brice/.config'
+let g:netrw_dirhist_8='/home/brice/.config/nvim'
+let g:netrw_dirhist_7='/home/brice/Documents/Falling-Elements/src/Cell'
+let g:netrw_dirhist_6='/home/brice/Documents/Falling-Elements/src'
+let g:netrw_dirhist_5='/home/brice/Documents/Falling-Elements/src/shaders'

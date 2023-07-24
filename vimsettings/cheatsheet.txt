@@ -1,0 +1,53 @@
+----------------- EDIT ----------------- 
+s // delete char and goes in insert mode
+Shift + d // Delete end of line (from cursor)
+ci( // Delete text between () and goes in insert mode
+ciw // Delete word on cursor and goes in insert mode
+
+
+----------------- SEARCH ----------------- 
+* // Search current word
+
+
+----------------- MOVEMENT ----------------- 
+L // Move to the bottom of the screen
+H // Move to the top of the screen
+M // Move to the middle of the screen
+Ctrl + o // Move to the previous cursor position (works between buffers)
+
+
+----------------- FILE ----------------- 
+:Ex <directory> // Open file browser (does not save buffer)
+:n // Edit file in new window
+:n * // Edit every file (classic wildcard)
+:n ** // Edit every file (wildcard recursively)
+
+:tabnew // Opens a new tab (remapped on Ctrl + t)
+gt // Moves to the next tab
+gT // Move the the previous tab
+
+Ctrl + wT // Moves the current buffer in a new tab
+
+
+----------------- SPLIT SCREEN ----------------- 
+Ctrl + ws // Horizontal split screen
+Ctrl + wv // Vertical split screen
+Ctrl + ww // Switch screen
+
+Ctrl + wH // Swap windows
+
+:vertical res [+/-] [percentage] // Vertical resize between screens
+
+
+----------------- MISC ----------------- 
+Ctrl + z // Suspend Vim and brings you back to Shell
+fg // (In Shell) brings back suspended Vim
+
+
+-------------------------------------------
+----------------- PLUGINS ----------------- 
+-------------------------------------------
+
+
+----------------- Telescope ----------------- 
+: Telescope find_files // (Remapped on " "ff)
