@@ -187,7 +187,7 @@ bindsym $mod+r mode "resize"
 ######################### PERSONNAL MAPPINGS #########################
 
 # Launch Compton (transparent applications)
-exec compton --config ~/.config/compton.conf
+exec compton --config ~/.config/compton.conf --backend glx --vsync opengl-swc
 
 # Set dark theme
 exec --no-startup-id /usr/libexec/gsd-xsettings
@@ -215,9 +215,6 @@ exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/gnome-terminal'
 exec_always "setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle"
 exec_always setxkbmap -layout us,fr
 exec_always setxkbmap -option 'grp:alt_shift_toggle'
-
-# swap caps-lock and ctrl keys
-exec -option ctrl:swapcaps
 
 # gaps between windows
 for_window [class="^.*"] border pixel 0
