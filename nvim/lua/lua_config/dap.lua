@@ -24,6 +24,30 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
+    args = {},
+  },
+}
+
+dap.configurations.c = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = function()
+		values = {}
+		value = vim.fn.input('Arguments (empty for none/stop): ')
+		while (value ~= "")
+		do
+			table.insert(values, value)
+			value = vim.fn.input('Arguments (empty for none/stop): ')
+		end
+		return values
+    end,
   },
 }
 
@@ -83,14 +107,14 @@ require("dapui").setup({
     -- Display controls in this element
     element = "repl",
     icons = {
-      pause = "",
-      play = "",
-      step_into = "",
-      step_over = "",
-      step_out = "",
+      pause = "⏸",
+      play = "▷",
+      step_into = "↓",
+      step_over = "→",
+      step_out = "↑",
       step_back = "",
       run_last = "",
-      terminate = "",
+      terminate = "X",
     },
   },
   floating = {

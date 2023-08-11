@@ -4,7 +4,7 @@ require "lua_config.plugins"
 require "lua_config.cmp"
 require "lua_config.lsp"
 require "lua_config.treesitter"
--- require "lua_config.dap"
+require "lua_config.dap"
 
 require ('toggleterm').setup()
 require ('gitsigns').setup()

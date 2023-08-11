@@ -48,7 +48,7 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 lsp_installer.setup {
-	ensure_installed = {"clangd", "marksman", "cmake", "glslls", "tsserver", "tailwindcss"},
+	ensure_installed = {"clangd", "cmake", "glslls", "tsserver", "tailwindcss"},
 	automatic_installation = true,
 	ui = {
 		icons = {
@@ -61,12 +61,6 @@ lsp_installer.setup {
 
 -- configure clangd server
 lspconfig["clangd"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure Markdown server
-lspconfig["marksman"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })

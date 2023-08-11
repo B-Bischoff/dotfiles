@@ -55,7 +55,8 @@ keymap("n", "<leader>T", ":ToggleTerm direction=tab<CR>", opts)
 
 -- Dap
 keymap("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
-keymap("n", "<S-k>", ":lua require'dap'.step_out()<CR>", opts)
-keymap("n", "<S-l>", ":lua require'dap'.step_into()<CR>", opts)
-keymap("n", "<S-j>", ":lua require'dap'.step_over()<CR>", opts)
+keymap("n", "<leader>k", ":lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<leader>j", ":lua require'dap'.step_into()<CR>", opts)
+keymap("n", "<leader>l", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<leader>dn", ":lua require'dap'.continue()<CR>", opts)
+keymap("n", "<leader>dd", ":lua require('dapui').toggle()<CR>", opts)
