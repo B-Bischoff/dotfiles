@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Renders a text based list of options that can be selected by the
 # user using up, down and enter keys and returns the chosen option.
@@ -64,18 +64,36 @@ function select_option {
     return $selected
 }
 
-echo "Select one option using up/down keys and enter to confirm:"
-echo
+if test -f Makefile;
+	then COMPILE_COMMAND="make re";
+elif test -f start.sh;
+	rm -rf build
+	then COMPILE_COMMAND="./start.sh";
+else
+	exit;
+fi
+
+
+clear
+COMPILE_LOG=".compile_log"
+$COMPILE_COMMAND 2> $COMPILE_LOG
+
+if [ $? == 0 ]; then
+	rm $COMPILE_LOG
+	exit;
+fi
 
 while IFS= read ; do
    targets+=("$REPLY")
-done < <(grep --color=always --exclude-dir=external -FRIn "TODO" .)
+done < <(grep --color=always -FRI "error" $COMPILE_LOG)
 
 options=targets
 
+rm $COMPILE_LOG
+clear
+
 select_option "${targets[@]}"
 choice=$?
-
 
 # echo "Choosen index = $choice"
 # echo "        value = ${options[$choice]}"
@@ -83,6 +101,10 @@ choice=$?
 filename=`(echo ${targets[$choice]} | cut -d ':' -f 1 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
 line=`(echo ${targets[$choice]} | cut -d ':' -f 2 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
 
+# cat ${COMPILE_LOG} 
+grep "error" $COMPILE_LOG;
+
 tmux select-window -t 1
 tmux send-keys ":e ${filename}" C-m
 tmux send-keys ": ${line}" C-m
+
