@@ -11,11 +11,11 @@
 # more about both of these fantastic two people here:
 #
 # Sindre Sorhus
-#   Github:   https://github.com/sindresorhus
+#   GitHub:   https://github.com/sindresorhus
 #   Twitter:  https://twitter.com/sindresorhus
 #
 # Julien Nicoulaud
-#   Github:   https://github.com/nicoulaj
+#   GitHub:   https://github.com/nicoulaj
 #   Twitter:  https://twitter.com/nicoulaj
 #
 # ------------------------------------------------------------------------------
@@ -76,13 +76,13 @@ precmd() {
     unset cmd_timestamp #Reset cmd exec time.
 }
 
-# Define prompts
-#
 parse_git_branch() {
 	git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 
-PROMPT="%c \$(parse_git_branch) %(?.%F{magenta}.%F{cyan})❯%f " # Display a red prompt char on failure
+# Define prompts
+#
+PROMPT="%c \$(parse_git_branch) %(?.%F{cyan}.%F{blue})❯%f " # Display a red prompt char on failure
 RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 
 # ------------------------------------------------------------------------------
