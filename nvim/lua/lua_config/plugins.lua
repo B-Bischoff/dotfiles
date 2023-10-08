@@ -57,6 +57,7 @@ return packer.startup(function(use)
 	-- Themes
 	use 'ghifarit53/tokyonight-vim'
 	use 'vim-airline/vim-airline-themes'
+	use 'nyoom-engineering/oxocarbon.nvim'
 
 	-- cmp plugins
 	use "hrsh7th/nvim-cmp" -- The completion plugin
