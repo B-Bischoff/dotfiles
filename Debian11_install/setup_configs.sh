@@ -1,5 +1,9 @@
 #/bin/bash
 
+# GIT STUFF
+git config --global user.name "B-Bischoff"
+git config --global user.email "bischoff.brice@gmail.com"
+
 # ZSH
 cd ../zshrc
 cp .zshrc ~/
@@ -32,6 +36,9 @@ cp compton.conf ~/.config/
 cd ../wallpapers
 cp * ~/Pictures
 
-# GIT STUFF
-git config --global user.name "B-Bischoff"
-git config --global user.email "bischoff.brice@gmail.com"
+# FONT
+cd ../font
+unzip PkgTTC-Iosevka-28.0.7.zip
+sudo cp *.ttc ~/.local/share/fonts
+sudo fc-cache
+rm *.ttc
