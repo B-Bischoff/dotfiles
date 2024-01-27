@@ -15,11 +15,14 @@ nitrogen \
 python3-venv \
 ripgrep \
 cmake \
-rofi \
 curl \
 ripgrep \
 npm \
-playerctl
+playerctl \
+tree \
+meld \
+htop \
+xsel \
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

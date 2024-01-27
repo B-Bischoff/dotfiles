@@ -20,7 +20,18 @@ libpangocairo-1.0-0 \
 libpango1.0-dev \
 check
 
+git clone --depth=1 https://github.com/adi1090x/rofi.git
+cd rofi
+chmod +x setup.sh
+./setup.sh
+cd ..
+rm -rf rofi
+
+# Modify default theme
+sed -i "s/theme='style-1'/theme='style-4'/" ~/.config/rofi/launchers/type-4/launcher.sh
+
 echo ""
 echo "-----------------------------------------------------------------"
 echo ""
 echo "install and unzip .tar.gz at : https://davatorium.github.io/rofi/"
+echo "then configure and sudo make install"
