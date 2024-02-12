@@ -187,7 +187,11 @@ bindsym $mod+r mode "resize"
 ######################### PERSONNAL MAPPINGS #########################
 
 # Launch Compton (transparent applications)
-exec compton --config ~/.config/compton.conf --backend glx --vsync opengl-swc
+# exec compton --config ~/.config/compton.conf --backend glx --vsync opengl-swc
+exec picom --blur-method dual_kawase --blur-strength 4
+
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Set dark theme
 exec --no-startup-id /usr/libexec/gsd-xsettings
@@ -203,13 +207,13 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-assign [class="Firefox"] $ws1
-assign [class="Spotify"] $ws1
+assign [class="Firefox"] $ws2
+assign [class="Spotify"] $ws2
 
 # application start
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/spotify'
-exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/gnome-terminal'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/spotify'
+exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/gnome-terminal'
 
 # keyboard layout swith using alt+shift
 exec_always "setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle"
@@ -218,6 +222,17 @@ exec_always setxkbmap -option 'grp:alt_shift_toggle'
 
 # gaps between windows
 for_window [class="^.*"] border pixel 0
+# gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle <px>
+
+# Examples
+#gaps inner all set 20
+#gaps outer current plus 5
+#gaps horizontal current plus 40
+#gaps outer current toggle 60
+
+gaps inner 4
+smart_gaps on
+hide_edge_borders smart_no_gaps
 
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -228,19 +243,19 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
 
-bar {
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-}
+# bar {
+#   colors {
+#     background #282A36
+#     statusline #F8F8F2
+#     separator  #44475A
+# 
+#     focused_workspace  #44475A #44475A #F8F8F2
+#     active_workspace   #282A36 #44475A #F8F8F2
+#     inactive_workspace #282A36 #282A36 #BFBFBF
+#     urgent_workspace   #FF5555 #FF5555 #F8F8F2
+#     binding_mode       #FF5555 #FF5555 #F8F8F2
+#   }
+# }
 
 bindsym $mod+d exec ~/.config/rofi/launchers/type-4/launcher.sh
 # bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
