@@ -28,3 +28,11 @@ vim.opt.background = "dark"
 vim.cmd.colorscheme "oxocarbon"
 
 vim.g.airline_theme='kolor'
+
+require ("telescope").setup({
+	defaults = {
+		file_ignore_patterns = {
+			"external"
+		}
+	}
+})
