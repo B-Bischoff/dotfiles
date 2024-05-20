@@ -72,48 +72,41 @@ else
 	exit;
 fi
 
-clear
 COMPILE_LOG=".compile_log"
-$COMPILE_COMMAND 2> $COMPILE_LOG
+unbuffer $COMPILE_COMMAND | tee $COMPILE_LOG
+# $COMPILE_COMMAND 2> $COMPILE_LOG
 
-if [ $? == 0 ]; then
-	rm $COMPILE_LOG;
-	exit;
-fi
-
-
-while IFS= read ; do
-	targets+=("$REPLY")
-done < <(grep --color=always -FI "error" $COMPILE_LOG)
-
-
-# if array length is 0
-if [ "${#targets[@]}" == 0 ]; then
-	echo "------------- RUNTIME ERROR -------------"
+grep "RUNTIME ERROR" $COMPILE_LOG -q
+if [ $? == 0 ]
+then
 	cat $COMPILE_LOG
 	rm $COMPILE_LOG;
-	exit;
+	exit 0
 fi
 
-rm $COMPILE_LOG;
+grep "COMPILATION FAILED" $COMPILE_LOG -q
+if [ $? == 0 ]
+then
+	while IFS= read ; do
+		targets+=("$REPLY")
+	done < <(grep --color=always -FI "error" $COMPILE_LOG)
 
-options=targets
 
-clear
+	cat $COMPILE_LOG
 
-select_option "${targets[@]}"
-choice=$?
+	rm $COMPILE_LOG;
 
-# echo "Choosen index = $choice"
-# echo "		value = ${options[$choice]}"
+	options=targets
 
-filename=`(echo ${targets[$choice]} | cut -d ':' -f 1 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
-line=`(echo ${targets[$choice]} | cut -d ':' -f 2 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
+	clear
 
-# cat ${COMPILE_LOG}
-grep "error" $COMPILE_LOG;
+	select_option "${targets[@]}"
+	choice=$?
 
-tmux select-window -t 1
-tmux send-keys ":e ${filename}" C-m
-tmux send-keys ": ${line}" C-m
+	filename=`(echo ${targets[$choice]} | cut -d ':' -f 1 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
+	line=`(echo ${targets[$choice]} | cut -d ':' -f 2 | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")`&>/dev/null
 
+	tmux select-window -t 1
+	tmux send-keys ":e ${filename}" C-m
+	tmux send-keys ": ${line}" C-m
+fi
