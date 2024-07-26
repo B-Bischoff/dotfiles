@@ -7,6 +7,8 @@ source $ZSH/oh-my-zsh.sh
 setxkbmap -option ctrl:swapcaps
 # Alt shift to switch from QWERTY to AZERTY
 setxkbmap -model pc104 -layout us,fr -variant ,, -option grp:alt_shift_toggle
+# Key repeat
+xset r rate 175 40
 
 export EDITOR='vim'
 
@@ -14,6 +16,7 @@ autoload -U colors && colors
 
 alias vim="~/.config/nvim/nvim.appimage"
 alias ls="ls -l --color"
+alias t="tmux"
 
 # Automatic "ls -la" after "cd" command
 function cd() {
