@@ -70,7 +70,7 @@ return packer.startup(function(use)
 
 	-- debug with dap
 	use "mfussenegger/nvim-dap"
-	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 
 	-- snippets
 	use "L3MON4D3/LuaSnip" --snippet engine
