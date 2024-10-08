@@ -84,11 +84,7 @@ return packer.startup(function(use)
 	use 'williamboman/nvim-lsp-installer'
 	use 'onsails/lspkind.nvim'
 
-	-- Treesitter
-	use {
-		"nvim-treesitter/nvim-treesitter",
-		commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac",
-	}
+	use "nvim-treesitter/nvim-treesitter"
 
 	-- Automatically set up configuration after cloning packer.nvim
 	if PACKER_BOOTSTRAP then
