@@ -2,28 +2,19 @@
 # $ docker build --ssh github=PATH_TO_PRIV_KEY -t devtools PATH_TO_DOCKERFILE
 
 # run :
-# $ docker run --privileged -v .:/work:rw -it devtools
+# $ docker run --privileged -v .:/work:rw -v /home/bbischof/.config/devtools:/root/.local:rw -it devtools
 
 FROM debian:bookworm
 
 RUN apt-get update -y
 
 # Packets install
-RUN apt-get install -y libfuse2
-RUN apt-get install -y libevent-dev
-RUN apt-get install -y libncurses-dev
-RUN apt-get install -y bison
-RUN apt-get install -y curl
-RUN apt-get install -y bsdmainutils
+RUN apt-get install -y libfuse2 libevent-dev libncurses-dev bison
+RUN apt-get install -y bsdmainutils expect
 RUN apt-get install -y gcc g++ cmake
-RUN apt-get install -y unzip
-RUN apt-get install -y ripgrep
-RUN apt-get install -y tree
+RUN apt-get install -y unzip curl ripgrep tree tig
 
-RUN apt-get install -y tmux
-RUN apt-get install -y vim
-RUN apt-get install -y git
-RUN apt-get install -y zsh
+RUN apt-get install -y tmux vim git zsh
 
 # Do not ask for confirmation when cloning repos from github
 RUN mkdir /root/.ssh; \
@@ -44,6 +35,6 @@ RUN cd /tmp/dotfiles/zshrc; \
 	./setup.sh
 
 # Identify docker shell
-RUN echo "export PS1=\"(d)\" $PS1" >> /root/.zshrc
+RUN echo 'PS1="🐔 $PS1"' >> /root/.zshrc
 
 ENTRYPOINT [ "/bin/zsh" ]
