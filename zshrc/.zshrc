@@ -16,7 +16,8 @@ autoload -U colors && colors
 
 alias vim="~/.config/nvim/nvim.appimage"
 alias ls="ls -l --color"
-alias t="tmux"
+alias t="tmux -2 -u"
+alias d="docker run --privileged -v .:/work:rw -v /home/bbischof/.config/devtools:/root/.local:rw -it -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix devtools"
 
 # Automatic "ls -la" after "cd" command
 function cd() {
