@@ -2,7 +2,10 @@
 # $ docker build --ssh github=PATH_TO_PRIV_KEY -t devtools PATH_TO_DOCKERFILE
 
 # run :
-# $ docker run --privileged -v .:/work:rw -v /home/bbischof/.config/devtools:/root/.local:rw -it devtools
+# $ docker run --privileged -v .:/work:rw -v /home/bbischof/.config/devtools:/root/.local:rw -it -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix devtools
+# -v .:/work:rw | shares the current working directory in /work
+# -v /home/bbischof/.config/devtools:/root/.local:rw | is used to store on the host machine appls configurations such as nvim plugins
+# -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix | enables the launch of GUI applications on the host display (make sure all the required libs are installed in the image)
 
 FROM debian:bookworm
 
@@ -12,7 +15,7 @@ RUN apt-get update -y
 RUN apt-get install -y libfuse2 libevent-dev libncurses-dev bison
 RUN apt-get install -y bsdmainutils expect
 RUN apt-get install -y gcc g++ cmake
-RUN apt-get install -y unzip curl ripgrep tree tig
+RUN apt-get install -y unzip curl ripgrep tree tig bear valgrind gitk
 
 RUN apt-get install -y tmux vim git zsh
 
