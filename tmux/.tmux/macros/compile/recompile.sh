@@ -65,6 +65,7 @@ function select_option {
 }
 
 if test -f Makefile;
+	make fclean
 	then COMPILE_COMMAND="make";
 elif test -f start.sh;
 	rm -rf build
@@ -84,11 +85,7 @@ then
 	cat $COMPILE_LOG
 	rm $COMPILE_LOG;
 	exit 0
-fi
-
-grep "COMPILATION FAILED" $COMPILE_LOG -q
-if [ $? == 0 ]
-then
+else
 	while IFS= read ; do
 		targets+=("$REPLY")
 	done < <(grep --color=always -FI "error" $COMPILE_LOG)

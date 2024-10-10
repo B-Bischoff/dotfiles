@@ -82,11 +82,7 @@ then
 	cat $COMPILE_LOG
 	rm $COMPILE_LOG;
 	exit 0
-fi
-
-grep "COMPILATION FAILED" $COMPILE_LOG -q
-if [ $? == 0 ]
-then
+else
 	while IFS= read ; do
 		targets+=("$REPLY")
 	done < <(grep --color=always -FI "error" $COMPILE_LOG)
